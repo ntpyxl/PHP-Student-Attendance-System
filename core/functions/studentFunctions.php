@@ -31,3 +31,28 @@ function fileStudentAttendance($studentId, $date, $time)
         );
     }
 }
+
+function submitExcuseLetter($studentId, $date, $content)
+{
+    $student = new Student();
+
+    $data = [
+        "student_id" => $studentId,
+        "content" => $content,
+        "excuse_date" => $date
+    ];
+
+    $submitExcuseResult = $student->submitExcuse($data);
+
+    if ($submitExcuseResult) {
+        return array(
+            "status" => 200,
+            "message" => "Submit excuse letter success."
+        );
+    } else {
+        return array(
+            "status" => 400,
+            "message" => "Submit excuse letter failed."
+        );
+    }
+}

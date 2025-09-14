@@ -10,8 +10,20 @@
                 class="border-2 px-2 py-1 border-black rounded-xl bg-blue-200 hover:scale-105 duration-150 cursor-pointer">
                 File Attendance
             </button>
+
+            <button
+                id="submitExcuseButton"
+                class="border-2 px-2 py-1 border-black rounded-xl bg-blue-200 hover:scale-105 duration-150 cursor-pointer">
+                Submit Excuse
+            </button>
         <?php
         } elseif ($_SESSION['user_role'] === "admin") { ?>
+            <button
+                id="viewAttendancesButton"
+                class="hidden border-2 px-2 py-1 border-black rounded-xl bg-blue-200 hover:scale-105 duration-150 cursor-pointer">
+                View Attendances
+            </button>
+
             <button
                 id="manageCoursesButton"
                 class="border-2 px-2 py-1 border-black rounded-xl bg-blue-200 hover:scale-105 duration-150 cursor-pointer">
@@ -19,9 +31,9 @@
             </button>
 
             <button
-                id="viewAttendancesButton"
-                class="hidden border-2 px-2 py-1 border-black rounded-xl bg-blue-200 hover:scale-105 duration-150 cursor-pointer">
-                View Attendances
+                id="manageExcusesButton"
+                class="border-2 px-2 py-1 border-black rounded-xl bg-blue-200 hover:scale-105 duration-150 cursor-pointer">
+                Manage Excuses
             </button>
         <?php
         }

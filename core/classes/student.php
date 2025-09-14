@@ -5,6 +5,7 @@ class Student extends User
 {
     protected $studentTable = "students";
     protected $attendanceTable = "attendance";
+    protected $excuseLetterTable = "excuse_letter";
 
     public function addStudent($data)
     {
@@ -29,5 +30,10 @@ class Student extends User
     public function viewAttendanceHistory($id)
     {
         return $this->readAllWhere($this->attendanceTable, "student_id", $id, "attendance_date DESC");
+    }
+
+    public function submitExcuse($data)
+    {
+        return $this->create($this->excuseLetterTable, $data);
     }
 }

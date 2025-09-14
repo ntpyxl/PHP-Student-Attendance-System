@@ -34,5 +34,14 @@ CREATE TABLE attendance (
     student_id INT NOT NULL,
     attendance_date DATE NOT NULL,
     time_in TIME NOT NULL,
-    status ENUM('present', 'late') NOT NULL
+    status ENUM('present', 'excused', 'late') NOT NULL,
+    letter_id INT
+);
+
+CREATE TABLE excuse_letter (
+    letter_id INT AUTO_INCREMENT PRIMARY KEY,
+    student_id INT NOT NULL,
+    content TEXT NOT NULL,
+    excuse_date DATE NOT NULL,
+    status ENUM('pending', 'approved', 'rejected') NOT NULL
 );

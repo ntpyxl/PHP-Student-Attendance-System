@@ -46,6 +46,9 @@ if (!isset($_SESSION['user_id'])) {
                 <div id="manageCoursesTab" class="hidden">
                     <?php include __DIR__ . "/components/manageCourses.php"; ?>
                 </div>
+                <div id="manageExcusesTab" class="hidden">
+                    <?php include __DIR__ . "/components/manageExcuses.php"; ?>
+                </div>
             <?php
             }
             ?>
@@ -53,6 +56,7 @@ if (!isset($_SESSION['user_id'])) {
 
         <!-- MODALS -->
         <?php include __DIR__ . "/components/fileAttendanceModal.php"; ?>
+        <?php include __DIR__ . "/components/submitExcuseModal.php"; ?>
     </div>
 
 

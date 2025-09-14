@@ -58,6 +58,14 @@ if (isset($_POST['fileAttendanceRequest'])) {
     $functionResult = fileStudentAttendance($studentId, $data, $time);
 }
 
+if (isset($_POST['submitExcuseRequest'])) {
+    $studentId = $_SESSION['user_role_id'];
+    $data = $_POST['date'];
+    $content = $_POST['content'];
+
+    $functionResult = submitExcuseLetter($studentId, $data, $content);
+}
+
 if ($functionResult['status'] === 200) {
     http_response_code(200);
     echo json_encode(['message' => $functionResult['message']]);
