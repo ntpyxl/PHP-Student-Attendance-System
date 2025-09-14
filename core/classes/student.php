@@ -36,4 +36,31 @@ class Student extends User
     {
         return $this->create($this->excuseLetterTable, $data);
     }
+
+    public function getExcusesbyStudentId($studentId)
+    {
+        $where[] = "students.student_id = :student_id";
+        $params['student_id'] = $studentId;
+
+        return $this->readAllAdvanced(
+            "students",
+
+            "excuse_letter.letter_id,
+            students.student_id,
+            students.first_name, students.last_name,
+            students.year_level,
+            courses.course_name,
+            excuse_letter.content,
+            excuse_letter.excuse_date,
+            excuse_letter.status
+            ",
+
+            "INNER JOIN courses ON students.course_code = courses.course_code
+            INNER JOIN excuse_letter ON students.student_id = excuse_letter.student_id",
+
+            $where,
+            $params,
+            "excuse_letter.excuse_date DESC"
+        );
+    }
 }

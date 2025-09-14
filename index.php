@@ -38,7 +38,11 @@ if (!isset($_SESSION['user_id'])) {
         <div id="mainContent" class="flex flex-col flex-1 p-2 border-2 border-black">
             <?php
             if ($_SESSION['user_role'] === "student") {
-                include __DIR__ . "/components/studentAttendanceHistory.php";
+            ?>
+                <div class="grid grid-cols-2 gap-4">
+                    <?php include __DIR__ . "/components/studentAttendanceHistory.php"; ?>
+                </div>
+            <?php
             } elseif ($_SESSION['user_role'] === "admin") { ?>
                 <div id="attendanceHistoryTab" class="block">
                     <?php include __DIR__ . "/components/allStudentAttendanceHistory.php"; ?>

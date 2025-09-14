@@ -183,7 +183,6 @@ $(document).on('click', '.viewExcuseLetterButton', function(event) {
 
     let status = "pending";
     //$('#selectExcuseStatus').prop('disabled', false);
-    // TODO: select disabling if I can't manage to unfuck things in attendance of excused days.
 
     if($(this).data('excuse-status') == "APPROVED") {
         status = "approved";
