@@ -1,25 +1,46 @@
-function showManageCoursesTab() {
-    $('#attendanceHistoryTab').addClass("hidden").removeClass("block");
-    $('#manageCoursesTab').addClass("block").removeClass("hidden");
+function showTab(tabId, buttonId) {
+    const tabs = ['#attendanceHistoryTab', '#manageCoursesTab', '#manageExcusesTab'];
+    tabs.forEach(id => {
+        if (id === tabId) {
+            $(id).addClass("block").removeClass("hidden");
+        } else {
+            $(id).addClass("hidden").removeClass("block");
+        }
+    });
 
-    $('#manageCoursesButton').addClass("hidden").removeClass("inline-block");
-    $('#viewAttendancesButton').addClass("inline-block").removeClass("hidden");
+    const buttons = ['#viewAttendancesButton', '#manageCoursesButton', '#manageExcusesButton'];
+    buttons.forEach(id => {
+        if (id != buttonId) {
+            $(id).addClass("inline-block").removeClass("hidden");
+        } else {
+            $(id).addClass("hidden").removeClass("inline-block");
+        }
+    });
 }
 
 function showAttendanceHistoryTab() {
-    $('#manageCoursesTab').addClass("hidden").removeClass("block");
-    $('#attendanceHistoryTab').addClass("block").removeClass("hidden");
-
-    $('#viewAttendancesButton').addClass("hidden").removeClass("inline-block");
-    $('#manageCoursesButton').addClass("inline-block").removeClass("hidden");
+    showTab('#attendanceHistoryTab', '#viewAttendancesButton');
 }
+
+function showManageCoursesTab() {
+    showTab('#manageCoursesTab', '#manageCoursesButton');
+}
+
+function showManageExcusesTab() {
+    showTab('#manageExcusesTab', '#manageExcusesButton');
+}
+
+
+$('#viewAttendancesButton').on('click', function() {
+    showAttendanceHistoryTab()
+});
 
 $('#manageCoursesButton').on('click', function() {
     showManageCoursesTab()
 });
 
-$('#viewAttendancesButton').on('click', function() {
-    showAttendanceHistoryTab()
+$('#manageExcusesButton').on('click', function() {
+    showManageExcusesTab()
 });
 
 $('#addCourseButton').on('click', function(event) {
@@ -113,14 +134,18 @@ $('#cancelEditCourseButton').on('click', function() {
 
 
 
-$('#studentYearLevelField, #studentCourseField').on('change', function() {
+$('#attendance_studentYearLevelField, #attendance_studentCourseField').on('change', function() {
     refreshAttendanceAdminList()
+})
+
+$('#excuse_studentYearLevelField, #excuse_studentCourseField').on('change', function() {
+    refreshExcuseLettersAdminList()
 })
 
 function refreshAttendanceAdminList() {
     const formData = {
-        yearLevel: $('#studentYearLevelField').val(),
-        courseCode: $('#studentCourseField').val(),
+        yearLevel: $('#attendance_studentYearLevelField').val(),
+        courseCode: $('#attendance_studentCourseField').val(),
         refreshAttendanceAdminListRequest: 1
     };
 
@@ -130,6 +155,23 @@ function refreshAttendanceAdminList() {
         data: formData,
         success: function(data) {
             $('#allStudentAttendanceRows').html(data);
+        }
+    })
+}
+
+function refreshExcuseLettersAdminList() {
+    const formData = {
+        yearLevel: $('#excuse_studentYearLevelField').val(),
+        courseCode: $('#excuse_studentCourseField').val(),
+        refreshExcuseLettersAdminListRequest: 1
+    };
+
+    $.ajax({
+        type: "POST",
+        url: dynamicContentHandlerDirectory,
+        data: formData,
+        success: function(data) {
+            $('#allStudentExcuseLetterRows').html(data);
         }
     })
 }

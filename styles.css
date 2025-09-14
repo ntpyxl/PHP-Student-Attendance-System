@@ -12,6 +12,9 @@
     --color-red-500: oklch(63.7% 0.237 25.331);
     --color-green-200: oklch(92.5% 0.084 155.995);
     --color-green-300: oklch(87.1% 0.15 154.449);
+    --color-green-900: oklch(39.3% 0.095 152.535);
+    --color-teal-100: oklch(95.3% 0.051 180.801);
+    --color-teal-200: oklch(91% 0.096 180.426);
     --color-blue-200: oklch(88.2% 0.059 254.128);
     --color-blue-500: oklch(62.3% 0.214 259.815);
     --color-blue-700: oklch(48.8% 0.243 264.376);
@@ -362,6 +365,9 @@
   .bg-green-300 {
     background-color: var(--color-green-300);
   }
+  .bg-green-900 {
+    background-color: var(--color-green-900);
+  }
   .bg-red-200 {
     background-color: var(--color-red-200);
   }
@@ -370,6 +376,12 @@
   }
   .bg-red-500 {
     background-color: var(--color-red-500);
+  }
+  .bg-teal-100 {
+    background-color: var(--color-teal-100);
+  }
+  .bg-teal-200 {
+    background-color: var(--color-teal-200);
   }
   .bg-white {
     background-color: var(--color-white);

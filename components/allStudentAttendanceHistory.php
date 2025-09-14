@@ -11,9 +11,9 @@
 
     <div class="flex flex-row space-x-3">
         <div class="flex flex-col flex-1">
-            <label for="studentYearLevelField" class="ml-1">Year Level</label>
+            <label for="attendance_studentYearLevelField" class="ml-1">Year Level</label>
             <select
-                id="studentYearLevelField"
+                id="attendance_studentYearLevelField"
                 type="text"
                 class="border-2 px-2 py-1 border-black rounded-2xl">
                 <option value="0" selected>All Year Levels</option>
@@ -25,9 +25,9 @@
         </div>
 
         <div class="flex flex-col flex-3">
-            <label for="studentCourseField" class="ml-1">Course</label>
+            <label for="attendance_studentCourseField" class="ml-1">Course</label>
             <select
-                id="studentCourseField"
+                id="attendance_studentCourseField"
                 type="text"
                 class="border-2 px-2 py-1 border-black rounded-2xl">
 

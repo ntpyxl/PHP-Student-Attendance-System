@@ -50,4 +50,40 @@ class Admin extends User
             "attendance.attendance_date DESC"
         );
     }
+
+    public function viewExcusesByCourse($yearLevel = null, $courseCode = null)
+    {
+        $where = [];
+        $params = [];
+
+        if (!empty($yearLevel)) {
+            $where[] = "students.year_level = :year";
+            $params['year'] = $yearLevel;
+        }
+
+        if (!empty($courseCode)) {
+            $where[] = "students.course_code = :courseCode";
+            $params['courseCode'] = $courseCode;
+        }
+
+        return $this->readAllAdvanced(
+            "students",
+
+            "excuse_letter.letter_id,
+            students.student_id,
+            students.first_name, students.last_name,
+            students.year_level,
+            courses.course_name,
+            excuse_letter.excuse_date,
+            excuse_letter.status
+            ",
+
+            "INNER JOIN courses ON students.course_code = courses.course_code
+            INNER JOIN excuse_letter ON students.student_id = excuse_letter.student_id",
+
+            $where,
+            $params,
+            "excuse_letter.excuse_date DESC"
+        );
+    }
 }

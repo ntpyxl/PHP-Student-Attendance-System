@@ -61,3 +61,13 @@ function refreshAttendanceAdminList($yearLevel, $courseCode)
 
     return $admin->viewAttendanceByCourse($yearLevel, $courseCode);
 }
+
+function refreshExcuseLettersAdminList($yearLevel, $courseCode)
+{
+    $admin = new Admin();
+
+    $yearLevel = $yearLevel != 0 ? $yearLevel : null;
+    $courseCode = $courseCode !== "None" ? $courseCode : null;
+
+    return $admin->viewExcusesByCourse($yearLevel, $courseCode);
+}
