@@ -175,3 +175,77 @@ function refreshExcuseLettersAdminList() {
         }
     })
 }
+
+
+
+$(document).on('click', '.viewExcuseLetterButton', function(event) {
+    event.preventDefault();
+
+    let status = "pending";
+    //$('#selectExcuseStatus').prop('disabled', false);
+    // TODO: select disabling if I can't manage to unfuck things in attendance of excused days.
+
+    if($(this).data('excuse-status') == "APPROVED") {
+        status = "approved";
+        //$('#selectExcuseStatus').prop('disabled', true);
+    } else if($(this).data('excuse-status') == "REJECTED") {
+        status = "rejected";
+        //$('#selectExcuseStatus').prop('disabled', true);
+    }
+
+    $('#studentName').text($(this).data('student-fullname'));
+    $('#studentYear').text($(this).data('student-yearlevel'));
+    $('#studentCourse').text($(this).data('student-coursename'));
+    $('#excuseDate').text($(this).data('excuse-date'));
+    $('#excuseContent').text($(this).data('excuse-content'));
+    $('#selectExcuseStatus').val(status);
+    $('#selectExcuseStatus').data('excuse-id', $(this).data('excuse-id'))
+    $('#selectExcuseStatus').data('student-id', $(this).data('student-id'))
+
+    $('#viewExcuseModal').addClass("flex");
+    $('#viewExcuseModal').removeClass("hidden");
+})
+
+$('#closeExcuseModalButton').on('click', function(event) {
+    event.preventDefault();
+
+    $('#viewExcuseModal').removeClass("flex");
+    $('#viewExcuseModal').addClass("hidden");
+})
+
+
+
+$('#selectExcuseStatus').on('change', function(event) {
+    event.preventDefault();
+    
+    const formData = {
+        excuseId: $(this).data('excuse-id'),
+        studentId: $(this).data('student-id'),
+        excuseStatus: $(this).val(),
+        changeExcuseStatusRequest: 1
+    }
+
+    console.log(formData)
+
+    $.ajax({
+        type: "POST",
+        url: handlerDirectory,
+        data: formData,
+        dataType: 'json',
+        statusCode: {
+            200: function(data) {
+                console.log('Success:', data.message);
+                
+                window.location.href = "index.php";
+            },
+            400: function(xhr) {
+                const response = JSON.parse(xhr.responseText);
+
+                console.log('Failed:', response.message);
+                alert(response.message);
+
+                window.location.href = "index.php";
+            }
+        }
+    })
+})

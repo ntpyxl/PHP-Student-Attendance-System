@@ -71,3 +71,26 @@ function refreshExcuseLettersAdminList($yearLevel, $courseCode)
 
     return $admin->viewExcusesByCourse($yearLevel, $courseCode);
 }
+
+function changeExcuseStatus($excuseId, $studentId, $excuseStatus)
+{
+    $admin = new Admin();
+
+    $data = [
+        "status" => $excuseStatus
+    ];
+
+    $editExcuseResult = $admin->editExcuse($data, $excuseId);
+
+    if ($editExcuseResult) {
+        return array(
+            "status" => 200,
+            "message" => "Edit excuse success."
+        );
+    } else {
+        return array(
+            "status" => 400,
+            "message" => "Edit excuse failed."
+        );
+    }
+}

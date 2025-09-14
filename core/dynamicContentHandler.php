@@ -47,6 +47,7 @@ if (isset($_POST['refreshExcuseLettersAdminListRequest'])) {
         $fullName    = $attendance['first_name'] . ' ' . $attendance['last_name'];
         $yearLevel   = $attendance['year_level'];
         $courseName  = $attendance['course_name'];
+        $content     = $attendance['content'];
         $date        = date('F j, Y', strtotime($attendance['excuse_date']));
         $status      = strtoupper($attendance['status']);
         $statusClass = $attendance['status'] === 'approved'
@@ -65,8 +66,15 @@ if (isset($_POST['refreshExcuseLettersAdminListRequest'])) {
             <td class='border-2 border-black px-2 py-1 font-semibold $statusClass'>$status</td>
             <td class='border-2 border-black px-2 py-1'>
                 <button
-                    data-excuse-id=" . $excuseId . "
-                    class='border-2 px-2 py-1 border-black rounded-xl bg-blue-200 hover:scale-105 duration-150 cursor-pointer'>
+                    data-excuse-id='$excuseId'
+                    data-student-id='$studentId'
+                    data-student-fullname='$fullName'
+                    data-student-yearlevel='$yearLevel'
+                    data-student-coursename='$courseName'
+                    data-excuse-date='" . $date . "'
+                    data-excuse-content='$content'
+                    data-excuse-status='$status'
+                    class='viewExcuseLetterButton border-2 px-2 py-1 border-black rounded-xl bg-blue-200 hover:scale-105 duration-150 cursor-pointer'>
                     View
                 </button>
             </td>

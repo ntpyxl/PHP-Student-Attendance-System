@@ -4,6 +4,7 @@ require_once __DIR__ . '/user.php';
 class Admin extends User
 {
     protected $adminTable = "admin";
+    protected $excuseLetterTable = "excuse_letter";
 
     public function addAdmin($data)
     {
@@ -74,6 +75,7 @@ class Admin extends User
             students.first_name, students.last_name,
             students.year_level,
             courses.course_name,
+            excuse_letter.content,
             excuse_letter.excuse_date,
             excuse_letter.status
             ",
@@ -85,5 +87,10 @@ class Admin extends User
             $params,
             "excuse_letter.excuse_date DESC"
         );
+    }
+
+    public function editExcuse($data, $id)
+    {
+        return $this->update($this->excuseLetterTable, $data, "letter_id", $id);
     }
 }

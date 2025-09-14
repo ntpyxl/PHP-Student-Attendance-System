@@ -66,6 +66,14 @@ if (isset($_POST['submitExcuseRequest'])) {
     $functionResult = submitExcuseLetter($studentId, $data, $content);
 }
 
+if (isset($_POST['changeExcuseStatusRequest'])) {
+    $excuseId = $_POST['excuseId'];
+    $studentId = $_POST['studentId'];
+    $excuseStatus = $_POST['excuseStatus'];
+
+    $functionResult = changeExcuseStatus($excuseId, $studentId, $excuseStatus);
+}
+
 if ($functionResult['status'] === 200) {
     http_response_code(200);
     echo json_encode(['message' => $functionResult['message']]);
