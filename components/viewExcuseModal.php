@@ -25,13 +25,15 @@
         </div>
 
         <div class="flex justify-end gap-3">
-            <select
-                id="selectExcuseStatus"
-                class="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:outline-none">
-                <option value="pending" disabled selected>Pending</option>
-                <option value="approved">Approve</option>
-                <option value="rejected">Reject</option>
-            </select>
+            <?php if ($_SESSION['user_role'] != "admin") { ?>
+                <select
+                    id="selectExcuseStatus"
+                    class="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:outline-none">
+                    <option value="pending" disabled selected>Pending</option>
+                    <option value="approved">Approve</option>
+                    <option value="rejected">Reject</option>
+                </select>
+            <?php } ?>
             <button
                 id="closeExcuseModalButton"
                 class="px-4 py-2 bg-red-500 text-white rounded-lg hover:scale-105 duration-150 cursor-pointer">
