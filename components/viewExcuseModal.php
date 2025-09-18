@@ -25,7 +25,7 @@
         </div>
 
         <div class="flex justify-end gap-3">
-            <?php if ($_SESSION['user_role'] != "admin") { ?>
+            <?php if ($_SESSION['user_role'] == "admin") { ?>
                 <select
                     id="selectExcuseStatus"
                     class="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:outline-none">
